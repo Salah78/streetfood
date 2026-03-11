@@ -92,7 +92,7 @@ export default function Hero() {
             className="relative z-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)] border-4 border-street-accent/30"
           >
             <img 
-              src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1000&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop"
               alt="Giant Smashed Burger Food Porn"
               className="w-full h-full object-cover transform scale-110 hover:scale-125 transition-transform duration-500"
             />
