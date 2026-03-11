@@ -81,7 +81,7 @@ export default function Hero() {
 
           {/* Le Burger Animé */}
           <motion.img 
-            src="https://freepngimg.com/thumb/burger/22-2-burger-png.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/800px-Hamburger_%28black_bg%29.jpg"
             alt="Giant Smashed Burger"
             initial={{ 
               opacity: 0, 
@@ -114,7 +114,7 @@ export default function Hero() {
                 delay: 1.5 // Commence après l'animation d'entrée
               }
             }}
-            className="relative z-20 w-[120%] max-w-[800px] object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)]"
+            className="relative z-20 w-[120%] max-w-[800px] object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)] mix-blend-screen"
           />
 
           {/* Effet de vitesse (speed lines) derrière le burger pendant l'apparition */}
