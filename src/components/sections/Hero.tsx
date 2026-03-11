@@ -80,42 +80,25 @@ export default function Hero() {
           />
 
           {/* Le Burger Animé */}
-          <motion.img 
-            src="/hero-burger.png"
-            alt="Giant Smashed Burger"
-            initial={{ 
-              opacity: 0, 
-              scale: 0.2, 
-              y: -500, 
-              x: 200,
-              rotate: 45 
-            }}
-            animate={{ 
-              opacity: 1, 
-              scale: 1.2, 
-              y: 0, 
-              x: 0,
-              rotate: -5
-            }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 100, 
-              damping: 12, 
-              delay: 0.2 
-            }}
-            // Animation de lévitation (floating) continue après l'apparition
+          <motion.div
+            initial={{ opacity: 0, scale: 0.2, y: -500, x: 200, rotate: 45 }}
+            animate={{ opacity: 1, scale: 1.2, y: 0, x: 0, rotate: -5 }}
+            transition={{ type: "spring", stiffness: 100, damping: 12, delay: 0.2 }}
             whileInView={{
               y: [0, -30, 0],
               rotate: [-5, 5, -5],
-              transition: {
-                repeat: Infinity,
-                duration: 6,
-                ease: "easeInOut",
-                delay: 1.5 // Commence après l'animation d'entrée
-              }
+              transition: { repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1.5 }
             }}
-            className="relative z-20 w-[120%] max-w-[800px] object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)]"
-          />
+            className="relative z-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden drop-shadow-[0_30px_30px_rgba(0,0,0,0.8)] border-4 border-street-accent/30"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1000&auto=format&fit=crop"
+              alt="Giant Smashed Burger Food Porn"
+              className="w-full h-full object-cover transform scale-110 hover:scale-125 transition-transform duration-500"
+            />
+            {/* Inner shadow pour un effet bulle 3D */}
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_50px_rgba(0,0,0,0.8)] pointer-events-none" />
+          </motion.div>
 
           {/* Effet de vitesse (speed lines) derrière le burger pendant l'apparition */}
           <motion.div
