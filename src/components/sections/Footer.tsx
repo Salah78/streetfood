@@ -24,10 +24,22 @@ export default function Footer() {
             <h4 className="text-xl font-bold uppercase mb-6 flex items-center gap-2">
               <MapPin className="text-street-danger" /> Le Spot
             </h4>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mb-4">
               123 Rue de la Dalle<br />
               75011 Paris, France
             </p>
+            {/* Carte Interactive stylisée Dark Mode */}
+            <div className="w-full h-40 rounded-lg overflow-hidden border-2 border-street-dark">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.292292615509614!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1615467000000!5m2!1sfr!2sfr" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) grayscale(100%) contrast(150%)' }} 
+                allowFullScreen={false} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
 
           <div>

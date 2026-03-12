@@ -44,7 +44,7 @@ export default function CustomCursor() {
     <>
       {/* Petit point central qui suit exactement la souris */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-street-accent rounded-full pointer-events-none z-[100] mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 bg-street-accent rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
@@ -54,7 +54,7 @@ export default function CustomCursor() {
       
       {/* Grand cercle qui suit avec un peu de retard et grossit au survol */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-street-accent rounded-full pointer-events-none z-[99] mix-blend-difference"
+        className="fixed top-0 left-0 w-8 h-8 border border-street-accent rounded-full pointer-events-none z-[9998] mix-blend-difference"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,

@@ -1,13 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu as MenuIcon, X } from "lucide-react";
+import { Menu as MenuIcon, X, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 import { playHoverSound } from "@/lib/sounds";
+import { useCartStore } from "@/lib/store";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { toggleCart, items } = useCartStore();
+
+  const cartItemCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,15 +34,42 @@ export default function Navbar() {
           <a href="#about" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">La Vibe</a>
           <a href="#gallery" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Le Spot</a>
           <a href="#contact" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Contact</a>
+          
+          <button 
+            onClick={toggleCart}
+            onMouseEnter={playHoverSound}
+            className="relative p-2 hover:text-street-accent transition-colors"
+          >
+            <ShoppingBag size={24} />
+            {cartItemCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-street-danger text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItemCount}
+              </span>
+            )}
+          </button>
+
           <a href="#menu" onMouseEnter={playHoverSound} className="bg-street-accent text-street-dark px-6 py-2 font-bold uppercase transform -skew-x-12 hover:bg-white transition-colors">
             <span className="block skew-x-12">Commander</span>
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <MenuIcon size={28} />}
-        </button>
+        {/* Mobile toggle & cart */}
+        <div className="md:hidden flex items-center gap-4">
+          <button 
+            onClick={toggleCart}
+            className="relative p-2 text-white"
+          >
+            <ShoppingBag size={24} />
+            {cartItemCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-street-danger text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItemCount}
+              </span>
+            )}
+          </button>
+          <button className="text-white" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={28} /> : <MenuIcon size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

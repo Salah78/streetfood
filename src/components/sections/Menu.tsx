@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import { playSizzleSound, playHoverSound } from "@/lib/sounds";
+import { useCartStore } from "@/lib/store";
 
 const menuItems = [
   { 
@@ -88,6 +89,7 @@ const menuItems = [
 export default function Menu() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isExploding, setIsExploding] = useState(false);
+  const addItem = useCartStore((state) => state.addItem);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % menuItems.length);
@@ -101,13 +103,19 @@ export default function Menu() {
     playHoverSound();
   };
 
+  const activeItem = menuItems[currentIndex];
+
   const handleOrderClick = () => {
     playSizzleSound();
     setIsExploding(true);
-    setTimeout(() => setIsExploding(false), 1500); // Reset after animation
+    addItem({
+      id: activeItem.id,
+      name: activeItem.name,
+      price: activeItem.price,
+      image: activeItem.image
+    });
+    setTimeout(() => setIsExploding(false), 1500);
   };
-
-  const activeItem = menuItems[currentIndex];
 
   return (
     <section id="menu" className="py-24 bg-street-gray relative overflow-hidden">
