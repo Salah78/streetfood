@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${inter.variable} ${bebasNeue.variable} scroll-smooth`}>
-      <body className="antialiased relative bg-street-dark text-white selection:bg-street-accent selection:text-street-dark">
+      <body className="antialiased relative bg-street-dark text-white selection:bg-street-accent selection:text-street-dark cursor-none">
         <div className="bg-noise mix-blend-overlay"></div>
         {children}
       </body>

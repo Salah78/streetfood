@@ -1,8 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 export default function Hero() {
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const { clientX, clientY } = e;
+    const { width, height, left, top } = buttonRef.current!.getBoundingClientRect();
+    const x = clientX - (left + width / 2);
+    const y = clientY - (top + height / 2);
+    setPosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
   return (
     <section className="relative min-h-screen pt-24 pb-12 flex items-center justify-center overflow-hidden bg-street-dark">
       {/* Background texture */}
@@ -45,12 +61,16 @@ export default function Hero() {
           
           <div className="flex flex-wrap gap-6">
             <motion.a 
-              whileHover={{ scale: 1.05 }}
+              ref={buttonRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              animate={{ x: position.x * 0.3, y: position.y * 0.3 }}
+              transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
               whileTap={{ scale: 0.95 }}
               href="#menu" 
               className="group relative px-8 py-4 bg-street-accent text-street-dark font-display text-2xl uppercase overflow-hidden shadow-[0_0_20px_rgba(250,204,21,0.4)]"
             >
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Commander</span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300 pointer-events-none">Commander</span>
               <div className="absolute inset-0 h-full w-0 bg-street-danger transition-all duration-300 ease-out group-hover:w-full z-0" />
             </motion.a>
             
