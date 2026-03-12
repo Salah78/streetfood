@@ -50,17 +50,17 @@ export default function Hero() {
             Nouveau Burger Smashé
           </motion.div>
           
-          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-display leading-[0.8] mb-6 drop-shadow-2xl">
+          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-display leading-[0.8] mb-4 md:mb-6 drop-shadow-2xl">
             <span className="block text-transparent" style={{ WebkitTextStroke: '2px white' }}>FAT</span>
             <span className="block text-street-accent text-glow">SMASH</span>
           </h1>
           
-          <p className="max-w-xl text-gray-300 text-lg md:text-xl mb-10 border-l-4 border-street-accent pl-4">
+          <p className="max-w-xl text-gray-300 text-base md:text-xl mb-8 md:mb-10 border-l-4 border-street-accent pl-4">
             Double steak smashé, croûte caramélisée, double cheddar fondu et notre sauce secrète. 
             L'expérience street food ultime.
           </p>
           
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
             <motion.a 
               ref={buttonRef}
               onMouseMove={handleMouseMove}

@@ -137,7 +137,7 @@ export default function Menu() {
         <div className="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between mt-16 md:mt-24 gap-12 md:gap-0">
           
           {/* Info Gauche */}
-          <div className="md:w-1/3 text-center md:text-left order-2 md:order-1 z-20">
+          <div className="w-full md:w-1/3 text-center md:text-left order-2 md:order-1 z-20 px-4 md:px-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id + "-info"}
@@ -147,27 +147,27 @@ export default function Menu() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-                  <span className="text-street-accent font-bold uppercase tracking-widest text-sm border border-street-accent px-3 py-1">
+                  <span className="text-street-accent font-bold uppercase tracking-widest text-xs md:text-sm border border-street-accent px-3 py-1">
                     {activeItem.category}
                   </span>
                   {activeItem.spicy && <Flame className="text-street-danger" size={20} />}
                 </div>
                 
-                <h3 className="text-4xl md:text-5xl font-display mb-4 leading-none">
+                <h3 className="text-5xl md:text-5xl font-display mb-4 leading-none">
                   {activeItem.name}
                 </h3>
-                <p className="text-gray-400 mb-6 text-lg">
+                <p className="text-gray-400 mb-6 text-base md:text-lg">
                   {activeItem.desc}
                 </p>
                 
-                <div className="text-4xl font-display text-white mb-8">
+                <div className="text-5xl md:text-4xl font-display text-white mb-8">
                   {activeItem.price}
                 </div>
                 
                 <button 
                   onClick={handleOrderClick}
                   onMouseEnter={playHoverSound}
-                  className={`px-8 py-4 ${activeItem.bgAccent} ${activeItem.bgAccent === 'bg-white' ? 'text-street-dark' : 'text-street-dark'} font-display text-2xl uppercase hover:scale-105 transition-transform active:scale-95 shadow-xl`}
+                  className={`w-full md:w-auto px-8 py-4 ${activeItem.bgAccent} ${activeItem.bgAccent === 'bg-white' ? 'text-street-dark' : 'text-street-dark'} font-display text-2xl uppercase hover:scale-105 transition-transform active:scale-95 shadow-xl`}
                 >
                   Ajouter au panier
                 </button>
@@ -210,13 +210,24 @@ export default function Menu() {
                 key={activeItem.id + "-img"}
                 src={activeItem.image}
                 alt={activeItem.name}
-                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
+                initial={{ opacity: 0, scale: 0.8, x: 100, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, x: 0, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: -100, rotate: 10 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = offset.x;
+                  if (swipe < -50) {
+                    nextSlide();
+                  } else if (swipe > 50) {
+                    prevSlide();
+                  }
+                }}
                 onClick={handleOrderClick}
-                className="relative z-20 w-full max-w-[300px] md:max-w-[400px] object-contain drop-shadow-2xl cursor-pointer"
+                className="relative z-20 w-full max-w-[250px] md:max-w-[400px] object-contain drop-shadow-2xl cursor-grab active:cursor-grabbing touch-pan-y"
               />
             </AnimatePresence>
           </div>

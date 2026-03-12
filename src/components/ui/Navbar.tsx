@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu as MenuIcon, X, ShoppingBag } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { playHoverSound } from "@/lib/sounds";
 import { useCartStore } from "@/lib/store";
 
@@ -72,22 +72,33 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full left-0 w-full bg-street-dark border-b border-street-gray py-6 px-4 flex flex-col gap-6 md:hidden"
-        >
-          <a href="#menu" onClick={() => setIsOpen(false)} className="text-2xl font-display">Menu</a>
-          <a href="#about" onClick={() => setIsOpen(false)} className="text-2xl font-display">La Vibe</a>
-          <a href="#gallery" onClick={() => setIsOpen(false)} className="text-2xl font-display">Le Spot</a>
-          <a href="#contact" onClick={() => setIsOpen(false)} className="text-2xl font-display">Contact</a>
-          <a href="#menu" onClick={() => setIsOpen(false)} className="bg-street-accent text-street-dark px-6 py-3 font-bold uppercase text-center mt-4">
-            Commander
-          </a>
-        </motion.div>
-      )}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ type: "tween", ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
+            className="fixed inset-0 bg-street-dark z-40 flex flex-col justify-center items-center gap-8 md:hidden"
+          >
+            {/* Background Texture in menu */}
+            <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-20 pointer-events-none"></div>
+            
+            <a href="#menu" onClick={() => setIsOpen(false)} className="text-6xl font-display text-white hover:text-street-accent transition-colors relative z-10">Menu</a>
+            <a href="#about" onClick={() => setIsOpen(false)} className="text-6xl font-display text-white hover:text-street-accent transition-colors relative z-10">La Vibe</a>
+            <a href="#gallery" onClick={() => setIsOpen(false)} className="text-6xl font-display text-white hover:text-street-accent transition-colors relative z-10">Le Spot</a>
+            <a href="#contact" onClick={() => setIsOpen(false)} className="text-6xl font-display text-white hover:text-street-accent transition-colors relative z-10">Contact</a>
+            
+            <button 
+              onClick={() => { setIsOpen(false); toggleCart(); }} 
+              className="mt-8 bg-street-accent text-street-dark px-12 py-4 font-display text-3xl uppercase hover:bg-white transition-colors relative z-10 shadow-[0_0_20px_rgba(250,204,21,0.4)]"
+            >
+              Commander
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

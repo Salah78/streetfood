@@ -21,6 +21,27 @@
     color: var(--foreground);
     font-family: var(--font-sans);
     overflow-x: hidden;
+    /* Optimisations Mobile Natives */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Désactiver le zoom au double tap sur mobile (souvent gênant sur les apps) */
+  a, button, input, select, textarea {
+    touch-action: manipulation;
+  }
+
+  /* Cacher la barre de défilement pour un look plus App */
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-street-accent);
   }
 
   h1, h2, h3, h4, h5, h6 {

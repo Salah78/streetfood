@@ -2,6 +2,7 @@ import Navbar from "@/components/ui/Navbar";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Preloader from "@/components/ui/Preloader";
 import CartDrawer from "@/components/ui/CartDrawer";
+import MobileBottomNav from "@/components/ui/MobileBottomNav";
 import Hero from "@/components/sections/Hero";
 import Menu from "@/components/sections/Menu";
 import About from "@/components/sections/About";
@@ -14,6 +15,7 @@ export default function Home() {
       <Preloader />
       <CustomCursor />
       <CartDrawer />
+      <MobileBottomNav />
       <Navbar />
       <Hero />
       <Menu />
