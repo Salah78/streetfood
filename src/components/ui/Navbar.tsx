@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { playHoverSound } from "@/lib/sounds";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +26,11 @@ export default function Navbar() {
         
         {/* Desktop */}
         <div className="hidden md:flex gap-8 items-center">
-          <a href="#menu" className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Menu</a>
-          <a href="#about" className="text-sm font-bold uppercase hover:text-street-accent transition-colors">La Vibe</a>
-          <a href="#gallery" className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Le Spot</a>
-          <a href="#contact" className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Contact</a>
-          <a href="#menu" className="bg-street-accent text-street-dark px-6 py-2 font-bold uppercase transform -skew-x-12 hover:bg-white transition-colors">
+          <a href="#menu" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Menu</a>
+          <a href="#about" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">La Vibe</a>
+          <a href="#gallery" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Le Spot</a>
+          <a href="#contact" onMouseEnter={playHoverSound} className="text-sm font-bold uppercase hover:text-street-accent transition-colors">Contact</a>
+          <a href="#menu" onMouseEnter={playHoverSound} className="bg-street-accent text-street-dark px-6 py-2 font-bold uppercase transform -skew-x-12 hover:bg-white transition-colors">
             <span className="block skew-x-12">Commander</span>
           </a>
         </div>

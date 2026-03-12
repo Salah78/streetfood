@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import { playSizzleSound, playHoverSound } from "@/lib/sounds";
 
 export default function Hero() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -64,6 +65,8 @@ export default function Hero() {
               ref={buttonRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              onMouseEnter={playHoverSound}
+              onClick={playSizzleSound}
               animate={{ x: position.x * 0.3, y: position.y * 0.3 }}
               transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
               whileTap={{ scale: 0.95 }}
@@ -77,6 +80,7 @@ export default function Hero() {
             <motion.a 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onMouseEnter={playHoverSound}
               href="#gallery" 
               className="px-8 py-4 bg-transparent border-2 border-white text-white font-display text-2xl uppercase hover:bg-white hover:text-street-dark transition-colors"
             >
